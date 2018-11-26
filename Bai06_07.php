@@ -73,12 +73,13 @@
                 }
                 else {
                     $result="Không thực hiện được";
+
                 }
             }
         ?>
         <div class="content">
             <h1>Mô phỏng máy tính điện tử</h1>
-            <form action="#" method="post" name="main-form">
+            <form action="" method="post" name="main-form">
                 <div class="row">
                     <span>Số thứ nhất</span>
                     <input type="text" name="number1" value="<?php echo $n1?>">

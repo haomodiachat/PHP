@@ -66,9 +66,47 @@
   $name= "";
   $time= "";
   if(isset($_POST["day"]) && isset($_POST["month"])) {
-        $day = $_POST["day"];
-        $month =$_POST["month"];
+         $day = $_POST["day"];
+         $month =$_POST["month"];
+
+        $flagShow = true;
         if(is_numeric($day) && is_numeric($month)) {
+
+            switch ($month) {
+                case 1:
+                    if ($day <= 19) {
+                        $image = "a";
+                        $name = "Ma Kết";
+                        $time = "23/12 - 19/01";
+                    }
+                    if ($day >= 20) {
+                        $image = "b";
+                        $name = "Bảo bình";
+                        $time = "20/01 - 19/02";
+                    }
+                    if ($day < 1 || $day > 31) $flagShow = false;
+                    break;
+
+                case 2:
+                    if ($day <= 19) {
+                        $image = "b";
+                        $name = "Bảo Bình";
+                        $time = "20/01 - 19/02";
+                    }
+                    if ($day >= 20) {
+                        $image = "c";
+                        $name = "Song Ngư";
+                        $time = "20/02 - 21/03";
+                    }
+                    if ($day < 1 || $day > 29) $flagShow = false;
+                    break;
+                default:
+                    $flagShow = false;
+            }
+        }
+            else {
+                $flagShow = false;
+
 
         }
   }
@@ -76,14 +114,14 @@
 ?>
 <div class="content">
     <h1>Lấy chòm sao</h1>
-    <form action="#" method="post" name="main-form">
+    <form action="" method="post" name="main-form">
         <div class="row">
             <span>Ngày sinh</span>
-            <input type="text" name="number1" value="<?php echo $day?>">
+            <input type="text" name="day" value="<?php echo $day?>">
         </div>
         <div class="row">
             <span>Tháng sinh</span>
-            <input type="text" name="caculate" value="<?php echo $month?>" >
+            <input type="text" name="month" value="<?php echo $month?>" >
         </div>
         <div class="row">
             <span></span>
@@ -91,12 +129,17 @@
         </div>
     </form>
     <?php
-        $result = '<div>'
+        if($flagShow == true) {
+            $result = '<div class="result">
+            <img src="image/' . $image . '.jpg" alt="' . $image . '">
+            <p>' . $name . ' <span>(' . $image . ':' . $time . ')</span></p>
+    </div>';
+        } else {
+            $result = "dữ liệu không hợp lệ";
+        }
+        echo $result;
     ?>
-    <div class="result">
-       <img src="image/a.jpg">
-        <p>Cung Bạch Dương <span>(Aries 22/03 - 20/04)</span></p>
-    </div>
+
 </div>
 </body>
 </html>
